@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mumma ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: linear-gradient(180deg,#071c2d,#183c4c,#526c72,#172d3b);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background:
+    linear-gradient(180deg,transparent 40%,#071a27 100%),
+    url("https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=2000&q=85")
+    center/cover no-repeat;
+    filter: brightness(.65);
+}
+
+.heart {
+    position: fixed;
+    top: -30px;
+    z-index: 10;
+    pointer-events: none;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+#lockScreen {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: linear-gradient(135deg,#071c2d,#315565);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.lock-box {
+    text-align: center;
+    padding: 35px 25px;
+    width: 100%;
+    max-width: 390px;
+    border: 1px solid #ffffff55;
+    border-radius: 25px;
+    background: #ffffff15;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 40px #0005;
+}
+
+.lock-box h1 {
+    font-size: 35px;
+    margin: 15px 0;
+}
+
+.lock-box p {
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 14px;
+    width: 100%;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 15px;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 30px;
+    padding: 13px 25px;
+    background: #e8bcae;
+    color: #38231f;
+    font-size: 16px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+button:hover {
+    transform: scale(1.06);
+    background: #ffd6c8;
+}
+
+#error {
+    color: #ffb6b6;
+    margin-top: 12px;
+}
+
+#main {
+    display: none;
+    text-align: center;
+    padding: 45px 18px;
+    position: relative;
+}
+
+.small-title {
+    letter-spacing: 4px;
+    color: #ffd7c6;
+    font-size: 13px;
+}
+
+h1 {
+    font-size: clamp(35px,7vw,65px);
+    margin: 20px 0;
+    text-shadow: 0 4px 15px #000;
+}
+
+.subtitle {
+    font-size: 19px;
+    line-height: 1.7;
+    max-width: 650px;
+    margin: auto;
+}
+
+.line {
+    width: 90px;
+    height: 2px;
+    background: #f5c7b5;
+    margin: 30px auto;
+}
+
+.message {
+    max-width: 750px;
+    margin: 30px auto;
+    padding: 30px;
+    border: 1px solid #ffffff55;
+    background: #061a2dbb;
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    font-size: 18px;
+    line-height: 1.9;
+    box-shadow: 0 10px 35px #0005;
+}
+
+.gifts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
+    gap: 22px;
+    max-width: 750px;
+    margin: 40px auto;
+}
+
+.gift {
+    background: #ffffff18;
+    border: 1px solid #ffffff55;
+    border-radius: 20px;
+    padding: 20px 10px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: .3s;
+}
+
+.gift:hover {
+    transform: translateY(-8px) scale(1.04);
+    background: #ffffff35;
+}
+
+.gift span {
+    display: block;
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.gift p {
+    font-size: 14px;
+    color: #ffe1d4;
+}
+
+#popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: #000b;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.popup-box {
+    width: 100%;
+    max-width: 430px;
+    padding: 35px 25px;
+    background: linear-gradient(145deg,#17394b,#345969);
+    border: 1px solid #ffffff66;
+    border-radius: 25px;
+    text-align: center;
+    animation: pop .4s ease;
+}
+
+@keyframes pop {
+    from {transform: scale(.5);opacity: 0;}
+    to {transform: scale(1);opacity: 1;}
+}
+
+.popup-box h2 {
+    margin-bottom: 20px;
+    color: #ffd6c6;
+}
+
+.popup-box p {
+    line-height: 1.8;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+footer {
+    padding: 30px 10px;
+    color: #ffe0d5;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="lockScreen">
+    <div class="lock-box">
+        <div style="font-size:65px">❤️</div>
+        <h1>For My Mumma</h1>
+        <p>A little surprise made with endless love.</p>
+
+        <input type="password" id="password"
+        placeholder="Enter your secret password">
+
+        <button onclick="unlock()">Open My Gift ❤️</button>
+        <div id="error"></div>
+    </div>
+</div>
+
+<!-- BACKGROUND MUSIC -->
+<audio id="music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- MAIN WEBSITE -->
+<div id="main">
+
+    <div class="small-title">A LITTLE WORLD MADE FOR YOU</div>
+
+    <h1>Happy Birthday, Mumma ❤️</h1>
+
+    <p class="subtitle">
+        To the most precious person in my life.
+        No distance can ever change how much I love you.
+    </p>
+
+    <div class="line"></div>
+
+    <!-- PERSONAL LETTER -->
+    <div class="message">
+
+        <h2 style="color:#ffd6c6;margin-bottom:20px;">
+            My Dearest Mumma 🌹
+        </h2>
+
+        Happy Birthday, Mumma.
+
+        <br><br>
+
+        I wish I could be there today, sitting beside you,
+        celebrating your birthday, seeing your beautiful smile
+        and making this day as special as you deserve.
+
+        <br><br>
+
+        Even though I cannot be physically present beside you,
+        please remember that my heart is always with you.
+        Distance can keep me away from your arms, but it can
+        never take away the love and respect I have for you.
+
+        <br><br>
+
+        You are my greatest blessing, my comfort and one of
+        the most beautiful gifts life has ever given me.
+        I might not always express my feelings perfectly,
+        but I hope you know how important you are to me.
+
+        <br><br>
+
+        If I could ask for one thing today, it would be to see
+        you happy, healthy and smiling every single day.
+
+        <br><br>
+
+        I may not have the perfect words or the perfect gift,
+        but I have a heart that will always love you.
+
+        <br><br>
+
+        I love you more than words could ever explain.
+
+        <br><br>
+
+        <span style="color:#ffd6c6;">
+            Forever your child. ❤️
+        </span>
+
+    </div>
+
+    <h2 style="margin-top:45px;color:#ffe0d5;">
+        🎁 Little Gifts For My Mumma 🎁
+    </h2>
+
+    <p style="margin-top:12px;">
+        Tap every gift to discover a little message.
+    </p>
+
+    <div class="gifts">
+
+        <div class="gift" onclick="openGift(0)">
+            <span>🎁</span><p>A Little Wish</p>
+        </div>
+
+        <div class="gift" onclick="openGift(1)">
+            <span>🌹</span><p>A Rose For You</p>
+        </div>
+
+        <div class="gift" onclick="openGift(2)">
+            <span>💌</span><p>A Secret Letter</p>
+        </div>
+
+        <div class="gift" onclick="openGift(3)">
+            <span>💎</span><p>My Treasure</p>
+        </div>
+
+        <div class="gift" onclick="openGift(4)">
+            <span>🧸</span><p>A Warm Hug</p>
+        </div>
+
+        <div class="gift" onclick="openGift(5)">
+            <span>🌙</span><p>A Prayer</p>
+        </div>
+
+        <div class="gift" onclick="openGift(6)">
+            <span>🎂</span><p>Birthday Surprise</p>
+        </div>
+
+        <div class="gift" onclick="openGift(7)">
+            <span>❤️</span><p>My Final Gift</p>
+        </div>
+
+    </div>
+
+    <div class="line"></div>
+
+    <h2 style="color:#ffd6c6;">
+        No matter how far I go, Mumma...
+    </h2>
+
+    <h1 style="font-size:35px;">
+        You will always be home. ❤️
+    </h1>
+
+    <footer>
+        Made with endless love, just for you. 🌹
+        <br><br>
+        Happy Birthday, Mumma!
+        <br>
+        With love, Amman ❤️
+    </footer>
+
+</div>
+
+<!-- GIFT POPUP -->
+<div id="popup" onclick="closeGift(event)">
+    <div class="popup-box">
+        <div style="font-size:55px" id="giftEmoji">❤️</div>
+        <h2 id="giftTitle">A Special Message</h2>
+        <p id="giftMessage"></p>
+        <button onclick="closeGift()">Close ❤️</button>
+    </div>
+</div>
+
+<script>
+
+function unlock() {
+    const entered =
+        document.getElementById("password").value;
+
+    if (entered === "amman") {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("main").style.display = "block";
+
+        const music = document.getElementById("music");
+        music.volume = 0.35;
+        music.play().catch(() => {
+            console.log("Music could not autoplay.");
+        });
+
+    } else {
+        document.getElementById("error").innerText =
+            "Incorrect password. Try again ❤️";
+    }
+}
+
+document.getElementById("password")
+.addEventListener("keydown", e => {
+    if (e.key === "Enter") unlock();
+});
+
+const gifts = [
+
+{
+emoji:"🌸",
+title:"A Little Wish",
+message:"May every morning bring you happiness, every evening bring you peace, and every year bring you countless reasons to smile. You deserve the very best, Mumma."
+},
+
+{
+emoji:"🌹",
+title:"A Rose For You",
+message:"If I could send you a thousand roses today, I still wouldn't have enough to express how special you are to me. This rose is a little reminder of my endless love."
+},
+
+{
+emoji:"💌",
+title:"A Secret Letter",
+message:"Sometimes I don't say everything I feel. But behind every quiet moment, there is a heart that loves you, misses you and is always grateful to have you."
+},
+
+{
+emoji:"💎",
+title:"My Greatest Treasure",
+message:"Gold loses its shine, diamonds can lose their value, but the love and blessings of a mother are priceless. Mumma, you are my greatest treasure."
+},
+
+{
+emoji:"🧸",
+title:"A Hug From Far Away",
+message:"Imagine this little teddy carrying the warmest hug from me. I wish I could be there to hug you in person today. Until then, consider this my little virtual hug."
+},
+
+{
+emoji:"🌙",
+title:"A Special Prayer",
+message:"May Allah bless you with good health, a long and peaceful life, happiness, protection and endless blessings. May He always keep you smiling. Ameen. 🤲"
+},
+
+{
+emoji:"🎂",
+title:"Your Birthday Surprise",
+message:"Today is your day, Mumma! Forget every worry, enjoy every little moment and remember that you are loved beyond imagination. Happy Birthday!"
+},
+
+{
+emoji:"❤️",
+title:"My Final Gift",
+message:"I don't have a gift expensive enough to match what you mean to me. So I am giving you something that will always belong to you: my love, my respect and my gratitude. I LOVE YOU, MUMMA. — AMMAN ❤️"
+}
+
+];
+
+function openGift(index) {
+    const gift = gifts[index];
+
+    document.getElementById("giftEmoji").innerText = gift.emoji;
+    document.getElementById("giftTitle").innerText = gift.title;
+    document.getElementById("giftMessage").innerText = gift.message;
+
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closeGift(event) {
+    if (!event ||
+        event.target.id === "popup" ||
+        event.target.tagName === "BUTTON") {
+        document.getElementById("popup").style.display = "none";
+    }
+}
+
+// Falling hearts
+const heartEmojis = ["❤️","💗","💕","💖","🌸","💞"];
+
+function createHeart() {
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+    heart.innerText =
+        heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (12 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (7 + Math.random() * 9) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 16000);
+}
+
+setInterval(createHeart, 350);
+
+</script>
+
+</body>
+</html>
